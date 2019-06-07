@@ -38,7 +38,7 @@ public class categorias extends javax.swing.JFrame {
                 modelo.addRow(filas);
 
             }
-            jTable1.setModel(modelo);
+            tabla.setModel(modelo);
             registros.close();
         } catch (SQLException ex) {
             Logger.getLogger(categorias.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,10 +53,12 @@ public class categorias extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         id_categoria = new javax.swing.JTextField();
         nombre_categoria = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        actualizar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,13 +68,6 @@ public class categorias extends javax.swing.JFrame {
 
         jLabel3.setText("nombre:");
 
-        jButton1.setText("buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,38 +75,63 @@ public class categorias extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
+
+        jButton3.setText("modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        actualizar.setText("actualizar");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addComponent(jLabel3))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(id_categoria)
+                    .addComponent(nombre_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel2)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(id_categoria)
-                            .addComponent(nombre_categoria, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton1))
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                        .addGap(114, 114, 114)
+                        .addComponent(jButton3)
+                        .addGap(27, 27, 27)
+                        .addComponent(actualizar)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,20 +140,23 @@ public class categorias extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(id_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addGap(42, 42, 42)
+                            .addComponent(id_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(nombre_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(actualizar)
+                    .addComponent(jButton1))
                 .addGap(68, 68, 68))
         );
 
@@ -163,8 +186,56 @@ public class categorias extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        int numero_fila = this.tabla.getSelectedRow();
+        if (numero_fila != -1) {
+            this.id_categoria.setText(this.tabla.getValueAt(numero_fila, 0).toString());
+            this.nombre_categoria.setText(this.tabla.getValueAt(numero_fila, 1).toString());
+            this.id_categoria.setEditable(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        conexion cnx = new conexion();
+        Connection registro = cnx.conexion();
+        String sql = "UPDATE categoria SET id_categoria='" + this.id_categoria.getText() + "',"
+                                     + "nombre='" + this.nombre_categoria.getText() + "' WHERE id_categoria='" + this.id_categoria.getText() + "'";
+        try {
+            PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se Actualizaron  Correctamente los datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            llenar_tabla();
+            registro.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Actualizar los Datos", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_actualizarActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        conexion cnx = new conexion();
+        Connection registro = cnx.conexion();
+        
+        int numero_fila = this.tabla.getSelectedRow();
+        String aux = this.tabla.getValueAt(numero_fila, 0).toString();        
+        if(numero_fila != -1){
+        String sql = "DELETE FROM categoria WHERE id_categoria='" + aux + "'";
+        try {
+            PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se Eliminaron Correctamente los datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            llenar_tabla();
+            registro.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar los Datos", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -203,14 +274,16 @@ public class categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizar;
     private javax.swing.JTextField id_categoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre_categoria;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

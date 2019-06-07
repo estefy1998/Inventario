@@ -102,10 +102,6 @@ private void llenar_tabla() {
             }
         });
 
-        id_responsable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        id_usuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,13 +176,14 @@ private void llenar_tabla() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 conexion cnx = new conexion();
         Connection registro = cnx.conexion();
-        String sql = "INSERT INTO pedido(id_pedido,fecha,cantidad,id_responsable,id_usuario) VALUES (?,?)";
+        String sql = "INSERT INTO pedido(id_pedido,fecha,cantidad,id_responsable,id_usuario) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
             pst.setString(1, this.id_pedido.getText());
             pst.setString(2, this.fecha.getText());
             pst.setString(3, this.cantidad.getSelectedText().toString());
-            pst.setString(4, this.id_usuario.getSelectedItem().toString());
+            pst.setString(4, this.id_responsable.getSelectedItem().toString());
+            pst.setString(5, this.id_usuario.getSelectedItem().toString());
             int numero_datos = pst.executeUpdate();
             if (numero_datos > 0) {
                 JOptionPane.showMessageDialog(null, "Se ingresaron  Correctamente los datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);

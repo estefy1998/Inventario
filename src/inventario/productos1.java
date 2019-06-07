@@ -15,14 +15,18 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 
 
 public class productos1 extends javax.swing.JFrame {
 
     public productos1() {
         initComponents();
-
+        ArrayList<String> lista = new ArrayList<String>();
+        lista = conexion.llenar_combo();
+        for(int i = 0; i<lista.size();i++){
+            COMBO1.addItem(lista.get(i));
+}
 }
 
     /**
