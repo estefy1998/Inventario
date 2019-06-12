@@ -7,9 +7,15 @@ package inventario;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,6 +33,10 @@ public class pedidos extends javax.swing.JFrame {
     public pedidos() {
         initComponents();
         llenar_tabla();
+        Calendar cal=Calendar.getInstance();
+        String fecha;
+        fecha=cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR);
+        this.fecha.getDateFormatString();
     }
 private void llenar_tabla() {
         try {
@@ -67,13 +77,13 @@ private void llenar_tabla() {
         dd = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         id_pedido = new javax.swing.JTextField();
-        fecha = new javax.swing.JTextField();
         cantidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         id_responsable = new javax.swing.JComboBox<>();
         id_usuario = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        fecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,14 +129,16 @@ private void llenar_tabla() {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(id_pedido)
-                    .addComponent(fecha)
                     .addComponent(cantidad)
                     .addComponent(id_responsable, 0, 118, Short.MAX_VALUE)
-                    .addComponent(id_usuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
+                    .addComponent(id_usuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addComponent(jButton1)
                         .addGap(54, 54, 54)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)))
@@ -145,7 +157,7 @@ private void llenar_tabla() {
                             .addComponent(id_pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))
                         .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)
@@ -180,7 +192,7 @@ private void llenar_tabla() {
         try {
             PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
             pst.setString(1, this.id_pedido.getText());
-            pst.setString(2, this.fecha.getText());
+            pst.setString(2, fecha.getDateFormatString());
             pst.setString(3, this.cantidad.getSelectedText().toString());
             pst.setString(4, this.id_responsable.getSelectedItem().toString());
             pst.setString(5, this.id_usuario.getSelectedItem().toString());
@@ -201,9 +213,9 @@ private void llenar_tabla() {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -239,7 +251,7 @@ private void llenar_tabla() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cantidad;
     private javax.swing.JLabel dd;
-    private javax.swing.JTextField fecha;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JTextField id_pedido;
     private javax.swing.JComboBox<String> id_responsable;
     private javax.swing.JComboBox<String> id_usuario;

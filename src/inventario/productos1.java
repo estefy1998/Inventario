@@ -22,6 +22,7 @@ public class productos1 extends javax.swing.JFrame {
 
     public productos1() {
         initComponents();
+        llenar_tabla();
         ArrayList<String> lista = new ArrayList<String>();
         lista = conexion.llenar_combo();
         for(int i = 0; i<lista.size();i++){
@@ -45,14 +46,16 @@ public class productos1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        ID_PRODUCTO = new javax.swing.JTextField();
-        NOMBRE_PRODUCTO = new javax.swing.JTextField();
+        id_producto = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         bagregar = new javax.swing.JButton();
         bmodificar = new javax.swing.JButton();
         beliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        jtabla = new javax.swing.JTable();
         COMBO1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,9 +80,9 @@ public class productos1 extends javax.swing.JFrame {
 
         jLabel8.setText("CATEGORIA:");
 
-        ID_PRODUCTO.addActionListener(new java.awt.event.ActionListener() {
+        id_producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ID_PRODUCTOActionPerformed(evt);
+                id_productoActionPerformed(evt);
             }
         });
 
@@ -97,14 +100,14 @@ public class productos1 extends javax.swing.JFrame {
             }
         });
 
-        beliminar.setText("ELIMINAR");
+        beliminar.setText("ACTUALIZAR");
         beliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 beliminarActionPerformed(evt);
             }
         });
 
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        jtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -115,11 +118,25 @@ public class productos1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tabla);
+        jScrollPane2.setViewportView(jtabla);
 
         COMBO1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 COMBO1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("ELIMINAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -134,29 +151,33 @@ public class productos1 extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel7)
                                             .addGap(18, 18, 18)
-                                            .addComponent(NOMBRE_PRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel6)
                                             .addGap(21, 21, 21)
-                                            .addComponent(ID_PRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(id_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(17, 17, 17)
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
                                         .addComponent(COMBO1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(31, 31, 31)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(bagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(beliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(bagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(beliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -167,11 +188,12 @@ public class productos1 extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(ID_PRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bagregar))
+                    .addComponent(id_producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bagregar)
+                    .addComponent(jButton1))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NOMBRE_PRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bmodificar)
                     .addComponent(jLabel7))
                 .addGap(30, 30, 30)
@@ -179,7 +201,9 @@ public class productos1 extends javax.swing.JFrame {
                     .addComponent(beliminar)
                     .addComponent(jLabel8)
                     .addComponent(COMBO1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
+                .addGap(28, 28, 28)
+                .addComponent(jButton2)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(241, Short.MAX_VALUE))
         );
@@ -198,14 +222,15 @@ public class productos1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void bagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarActionPerformed
      conexion cnx = new conexion();
         Connection registro = cnx.conexion();
         String sql = "INSERT INTO producto(id_producto,nombre,id_categoria) VALUES (?,?,?)";
         try {
             PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
-            pst.setString(1, this.ID_PRODUCTO.getText());
-            pst.setString(2, this.NOMBRE_PRODUCTO.getText());
+            pst.setString(1, this.id_producto.getText());
+            pst.setString(2, this.nombre.getText());
             pst.setString (3, this.COMBO1.getSelectedItem().toString());
             int numero_datos = pst.executeUpdate();
             if (numero_datos > 0) {
@@ -247,25 +272,95 @@ while(result.next())
         }
         }
     private void bmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarActionPerformed
-       
+
+        
+        int numero_fila = this.jtabla.getSelectedRow();
+        if (numero_fila != -1) {
+            this.id_producto.setText(this.jtabla.getValueAt(numero_fila, 0).toString());
+            this.nombre.setText(this.jtabla.getValueAt(numero_fila, 1).toString());
+            this.COMBO1.setSelectedItem(this.jtabla.getValueAt(numero_fila, 2).toString());
+            this.id_producto.setEditable(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_bmodificarActionPerformed
 
              
           
     private void beliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarActionPerformed
+
+        conexion cnx = new conexion();
+        Connection registro = cnx.conexion();
+        String sql = "UPDATE producto SET id_producto='" + this.id_producto.getText() + "',"
+                                  + "nombre='" + this.nombre.getText() + "',"
+                                     + "direccion='" + this.COMBO1.getSelectedItem()+ "' WHERE id_responsable='" + this.id_producto.getText() + "'";
+        try {
+            PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se Actualizaron  Correctamente los datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            llenar_tabla();
+            registro.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Actualizar los Datos", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex);
+        }
         
 
     }//GEN-LAST:event_beliminarActionPerformed
 
-    private void ID_PRODUCTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_PRODUCTOActionPerformed
+    private void id_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_productoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ID_PRODUCTOActionPerformed
+    }//GEN-LAST:event_id_productoActionPerformed
 
     private void COMBO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_COMBO1ActionPerformed
        
         
     }//GEN-LAST:event_COMBO1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /*pool metodospool=new pool();
+        java.sql.Connection cn= null;
+        
+        try{
+        if(cn!=null){
+        JOptionPane.showMessageDialog(null, "conectado");}
+        }finally{
+        
+        try{
+        cn.close();
+        }catch (SQLException ex) {
+        
+        System.out.println(ex);
+        
+        }
+        }*/
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        conexion cnx = new conexion();
+        Connection registro = cnx.conexion();
+        
+        int numero_fila = this.jtabla.getSelectedRow();
+        String aux = this.jtabla.getValueAt(numero_fila, 0).toString();        
+        if(numero_fila != -1){
+        String sql = "DELETE FROM producto WHERE id_producto='" + aux + "'";
+        try {
+            PreparedStatement pst = (PreparedStatement) registro.prepareStatement(sql);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se Eliminaron Correctamente los datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            llenar_tabla();
+            registro.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar los Datos", "Mensaje Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,11 +400,12 @@ while(result.next())
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> COMBO1;
-    private javax.swing.JTextField ID_PRODUCTO;
-    private javax.swing.JTextField NOMBRE_PRODUCTO;
     private javax.swing.JButton bagregar;
     private javax.swing.JButton beliminar;
     private javax.swing.JButton bmodificar;
+    private javax.swing.JTextField id_producto;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -318,6 +414,35 @@ while(result.next())
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable tabla;
+    private javax.swing.JTable jtabla;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
+
+    private void llenar_tabla() {
+     
+       try {
+            DefaultTableModel modelo;
+            conexion cnx = new conexion();
+            Connection registros = cnx.conexion();
+            String[] nombre_atributos = {"id_producto", "nombre","id_categoria"};
+            String sql = ("SELECT *FROM producto");
+            modelo = new DefaultTableModel(null, nombre_atributos);
+            Statement st = (Statement) registros.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] filas = new String[3];
+
+            while (rs.next()) {
+                filas[0] = rs.getString("id_producto");
+                filas[1] = rs.getString("nombre");
+                filas[2] = rs.getString("id_categoria");
+                modelo.addRow(filas);
+
+            }
+            jtabla.setModel(modelo);
+            registros.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(responsable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
